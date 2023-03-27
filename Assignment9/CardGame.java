@@ -6,9 +6,9 @@ class CardGame{
     char suit[] = {'J','Q','K','A'};
     int ranks[] = {2,3,4,5,6,7,8,9,10};
     public static void dealCards() {
-        for (int i = 0; i < 26; i++) {
-            playerOne.takeCard(deck.deal());
-            playerTwo.takeCard(deck.deal());
+        for (int i = 0; i < suits.length; i++) {
+            for (int j = 0; j < 
+            
         }
     }
 
