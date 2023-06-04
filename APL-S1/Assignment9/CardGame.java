@@ -2,14 +2,18 @@
 import java.util.*;
 import java.util.Random;
 class CardGame{
-    String suits[] = {"clubs","diamonds","hearts","spades"};
-    char suit[] = {'J','Q','K','A'};
-    int ranks[] = {2,3,4,5,6,7,8,9,10};
-    public static void dealCards() {
-        for (int i = 0; i < suits.length(); i++) {
-            for (int j = 0; j < 
-            
+    
+    public static void dealCards(String suits[],int[] ranks) {
+       
+        for(int i=0; i<suits.length; i++){
+            for(int j=0; j<9; j++){
+                System.out.println("Card " + i + " " + j);
+
+            }
         }
+
+
+        
     }
 
     public static boolean chooseFirstPlayerOne(){
@@ -40,13 +44,16 @@ class CardGame{
 
     public static void main(String[] args){
         
-
+        String suits[] = {"clubs","diamonds","hearts","spades"};
+        char suit[] = {'J','Q','K','A'};
+        int ranks[] = {2,3,4,5,6,7,8,9,10};
 
         CardDeck deck = new CardDeck();
-
+        
         // Deck.shuffle();
         chooseFirstPlayerOne();
     //    Deck.printDeck();
+        dealCards(suits,ranks);    
 
 
 }
