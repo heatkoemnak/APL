@@ -54,8 +54,10 @@ class Student{
         System.out.print("Enter ID: ");
         id = scanner.nextInt();
         if (students.containsKey(id)){
-            String message = "ID already exits";
+            String message = "Student with ID "+ id +" already exists.";
+            System.out.println();
             throw new RuntimeException(message);
+
         }
         System.out.print("Enter Name: ");
         scanner.nextLine();
@@ -70,7 +72,7 @@ class Student{
         System.out.println("student added successfully");
 
     }
-    static void addStudent() {
+    public static void addStudent() {
         Student student = new Student(0, null, null);
         boolean isAdded=false;
         do{
@@ -109,8 +111,11 @@ class Student{
             if (students.containsKey(id)) {
                 students.remove(id);
                 System.out.println("Student deleted successfully.");
+                System.out.println();
             } else {
+                System.out.println();
                 System.out.println("Student not found.");
+                System.out.println();
             }
     }
 
