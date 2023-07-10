@@ -6,7 +6,7 @@ import java.util.Scanner;
 class Account {
     private int account_no;
     private String name;
-    private double balance;
+    double balance;
     private String password;
 
     public Account(int account_no, String name, double balance, String password) { //constructor
