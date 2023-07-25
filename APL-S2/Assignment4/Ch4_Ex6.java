@@ -1,6 +1,8 @@
 //Exercise6 Chapter4
-//HeatKoemnak
-
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 class Employee{
@@ -35,6 +37,7 @@ class Employee{
     public static Scanner scanner = new Scanner(System.in);
 
     public void readEmployee() {
+        
         System.out.print("Enter ID: ");
         id = scanner.nextInt();
         if (employees.containsKey(id)){
@@ -49,40 +52,8 @@ class Employee{
         gender = scanner.nextLine();
         System.out.print("Enter Salary: ");
         salary = scanner.nextDouble();
-        System.out.println("Employee added successfully");
 
     }
-    public static void addEmployee() {
-        Employee employee = new Employee(0, null, null,0);
-        boolean isAdded=false;
-        do{
-            try{
-                employee.readEmployee();
-                isAdded=true;
-            }
-            catch(Exception e){
-                System.out.println(e.getMessage());
-            }
-        }while(!isAdded);
-        employees.put(employee.getId(), employee);
-    }
-
-    public static void displayAllEmployee() {
-
-        System.out.println("------------------------------------------");
-        System.out.printf("%-5s %-15s %-10s %-10s\n", "ID", "Name", "Gender","Salary" );
-        System.out.println("------------------------------------------");
-        for (Employee employee : employees.values()) {
-            System.out.printf("%-5d %-15s %-10s %-10.02f\n",
-                    employee.getId(),
-                    employee.getName(),
-                    employee.getGender(),
-                    employee.getSalary()
-            );
-        }
-        System.out.println("------------------------------------------");
-    }
-
     public static void deleteEmployee() {
             System.out.print("Enter ID of employee to delete: ");
             int id = scanner.nextInt();
@@ -97,6 +68,69 @@ class Employee{
             }
     }
 
+    public static void addEmployee() {
+        Employee employee = new Employee(0, null, null, 0);
+        boolean isAdded = false;
+        do {
+            try {
+                employee.readEmployee();
+                isAdded = true;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!isAdded);
+        employees.put(employee.getId(), employee);
+
+    File file = new File("APL-S2/Assignment4/Employee.txt");
+    
+    try{
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+        String formattedLine = String.format("%-5d %-20s %-10s %8.2f%n", employee.getId(), employee.getName(), employee.getGender(), employee.getSalary());
+        writer.write(formattedLine);
+        System.out.println("Employee added successfully.");
+        writer.close();
+    }
+    catch (IOException e) {
+        System.out.println(e.getMessage());
+    }
+    }
+
+    public static void displayAllEmployee() {
+        File file = new File("APL-S2/Assignment4/Employee.txt");
+        try{
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                writer.write("------------<<Current Employee>>--------------\n");
+                writer.write("----------------------------------------------\n");
+                String columnTitles = String.format("%-5s %-20s %-10s %8s%n", "ID", "Name", "Gender", "Salary");
+                writer.write(columnTitles);
+                writer.write("----------------------------------------------\n");
+                for(Employee employee : employees.values()) {
+                    
+                    String formattedLine = String.format("%-5d %-20s %-10s %8.2f%n", employee.getId(), employee.getName(), employee.getGender(), employee.getSalary());
+                    writer.write(formattedLine);
+                }
+                System.out.println("Employee added successfully.");
+                writer.close();
+
+        }
+
+        catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("------------------------------------------");
+        System.out.printf("%-5s %-15s %-10s %-10s\n", "ID", "Name", "Gender","Salary" );
+        System.out.println("------------------------------------------");
+        for (Employee employee : employees.values()) {
+            System.out.printf("%-5d %-15s %-10s %-10.02f\n",
+                    employee.getId(),
+                    employee.getName(),
+                    employee.getGender(),
+                    employee.getSalary()
+            );
+        }
+        System.out.println("------------------------------------------");
+    };
+    
     public static void searchEmployee() {
         System.out.print("Search by employee ID: ");
         int id = scanner.nextInt();
@@ -132,15 +166,15 @@ public class Ch4_Ex6 {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Employee employeeOne = new Employee(1, "Lucy", "F",300);
-        Employee employeeTwo = new Employee(2, "John", "M",400);
-        Employee employeeThree = new Employee(3, "Alex", "M",500);
+            Employee employeeOne = new Employee(1, "Lucy", "F",300);
+            Employee employeeTwo = new Employee(2, "John", "M",400);
+            Employee employeeThree = new Employee(3, "Alex", "M",500);
 
-        Employee.employees.put(employeeOne.getId(), employeeOne);
-        Employee.employees.put(employeeTwo.getId(), employeeTwo);
-        Employee.employees.put(employeeThree.getId(), employeeThree);
+            Employee.employees.put(employeeOne.getId(), employeeOne);
+            Employee.employees.put(employeeTwo.getId(), employeeTwo);
+            Employee.employees.put(employeeThree.getId(), employeeThree);
 
-        boolean exit = false;
+            boolean exit = false;
         while (!exit) {
             System.out.println("Please select an option:");
             System.out.println("a. Add new employee");
@@ -171,8 +205,4 @@ public class Ch4_Ex6 {
             }
         }
     }
-
-
-
-    
-}
+};
