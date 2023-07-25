@@ -27,9 +27,6 @@ class MultiplayerGame extends Game {
     public void playAgainstOtherPlayers() {
 
 
-
-
-
     }
 }
 
@@ -55,8 +52,6 @@ public class Ex8 {
         System.out.println("---------------------------");
         gameLauncher = new GameLauncher(new MultiplayerGame());
         gameLauncher.launchGame();
-
-
 
         }
     
