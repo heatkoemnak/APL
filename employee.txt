@@ -1,0 +1,4 @@
+1,Lucy,F,300.0
+2,John,M,400.0
+3,Alex,M,500.0
+4,koemnak,M,300.0
