@@ -19,8 +19,6 @@ class Employee{
         this.gender= gender;
         this.salary= salary;
 
-
-
     }
     public int getId() {
         return id;
@@ -40,6 +38,20 @@ class Employee{
     public static HashMap<Integer, Employee> employees = new HashMap<>();
     public static Scanner scanner = new Scanner(System.in);
 
+    
+    public static void deleteEmployee() {
+            System.out.print("Enter ID of employee to delete: ");
+            int id = scanner.nextInt();
+            if (employees.containsKey(id)) {
+                employees.remove(id);
+                System.out.println("Employee deleted successfully.");
+                System.out.println();
+            } else {
+                System.out.println();
+                System.out.println("ID not found.");
+                System.out.println();
+            }
+    }
     public void readEmployee() {
         
         System.out.print("Enter ID: ");
@@ -57,19 +69,6 @@ class Employee{
         System.out.print("Enter Salary: ");
         salary = scanner.nextDouble();
 
-    }
-    public static void deleteEmployee() {
-            System.out.print("Enter ID of employee to delete: ");
-            int id = scanner.nextInt();
-            if (employees.containsKey(id)) {
-                employees.remove(id);
-                System.out.println("Employee deleted successfully.");
-                System.out.println();
-            } else {
-                System.out.println();
-                System.out.println("Search not found.");
-                System.out.println();
-            }
     }
 
     public static void addEmployee() {
@@ -102,6 +101,7 @@ class Employee{
             System.out.println(e.getMessage());
         }
     }
+
     public static void displayAllEmployee() {
 
         File file = new File("C:\\Github Repo\\APL\\APL-S2\\Assignment4\\Employee.txt");
@@ -124,8 +124,8 @@ class Employee{
         }
         
         try{
-                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                writer.write("--------------<<Current Employee>>-----------------\n");
+                FileWriter writer = new FileWriter(file);
+                writer.write("----------------<<Employee List>>------------------\n");
                 writer.write("---------------------------------------------------\n");
                 String columnTitles = String.format("|%-5s| %-20s| %-10s| %8s|%n", "ID", "Name", "Gender", "Salary");
                 writer.write(columnTitles);
