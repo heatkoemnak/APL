@@ -159,13 +159,10 @@ class Employee{
                     employee.getGender(),
                     employee.getSalary()
             );
-            System.out.println("---------------------------------------------------");
-            System.out.println();
+            System.out.println("---------------------------------------------------\n");
   
         } else {
-            System.out.println();
-            System.out.println("Search not found.");
-            System.out.println();
+            System.out.println("Search not found.\n");
 
         }
     }
