@@ -1,6 +1,8 @@
 //Exercise6 Chapter4
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,6 +18,8 @@ class Employee{
         this.name = name;
         this.gender= gender;
         this.salary= salary;
+
+
 
     }
     public int getId() {
@@ -81,54 +85,77 @@ class Employee{
         } while (!isAdded);
         employees.put(employee.getId(), employee);
 
-    File file = new File("APL-S2/Assignment4/Employee.txt");
-    
-    try{
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-        String formattedLine = String.format("%-5d %-20s %-10s %8.2f%n", employee.getId(), employee.getName(), employee.getGender(), employee.getSalary());
-        writer.write(formattedLine);
-        System.out.println("Employee added successfully.");
-        writer.close();
+        File file = new File("C:\\Github Repo\\APL\\APL-S2\\Assignment4\\Employee.txt");
+        
+        if(file.exists()){
+                System.out.println("New employee has been added successful into file "+file.getPath());
+            }else{
+                System.out.println("That file does not exist..");
+        }
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+            String formattedLine = String.format("|%-5d| %-20s| %-10s| %8.2f|%n", employee.getId(), employee.getName(), employee.getGender(), employee.getSalary());
+            writer.write(formattedLine);
+            writer.close();
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
-    catch (IOException e) {
-        System.out.println(e.getMessage());
-    }
-    }
-
     public static void displayAllEmployee() {
-        File file = new File("APL-S2/Assignment4/Employee.txt");
+
+        File file = new File("C:\\Github Repo\\APL\\APL-S2\\Assignment4\\Employee.txt");
+        String line;
+         try{
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+            
+         }catch (Exception e){
+                System.out.println(e);
+            }
+
+
+        // System.out.println("------------------------------------------");
+        // System.out.printf("%-5s %-15s %-10s %-10s\n", "ID", "Name", "Gender","Salary" );
+        // System.out.println("------------------------------------------");
+        // for (Employee employee : employees.values()) {
+        //     System.out.printf("%-5d %-15s %-10s %-10.02f\n",
+        //             employee.getId(),
+        //             employee.getName(),
+        //             employee.getGender(),
+        //             employee.getSalary()
+        //     );
+        // }
+        // System.out.println("------------------------------------------");
+
+        
+        if(file.exists()){
+            System.out.println("Employee saved into file location "+file.getPath());
+        }else{
+            System.out.println("That file does not exist..");
+        }
         try{
                 BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                writer.write("------------<<Current Employee>>--------------\n");
-                writer.write("----------------------------------------------\n");
-                String columnTitles = String.format("%-5s %-20s %-10s %8s%n", "ID", "Name", "Gender", "Salary");
+                writer.write("--------------<<Current Employee>>-----------------\n");
+                writer.write("---------------------------------------------------\n");
+                String columnTitles = String.format("|%-5s| %-20s| %-10s| %8s|%n", "ID", "Name", "Gender", "Salary");
                 writer.write(columnTitles);
-                writer.write("----------------------------------------------\n");
+                writer.write("---------------------------------------------------\n");
                 for(Employee employee : employees.values()) {
-                    
-                    String formattedLine = String.format("%-5d %-20s %-10s %8.2f%n", employee.getId(), employee.getName(), employee.getGender(), employee.getSalary());
+                    //sort by id
+                    String formattedLine=String.format("|%-5d| %-20s| %-10s| %8.2f|%n",employee.getId(),employee.getName(),employee.getGender(),employee.getSalary());
                     writer.write(formattedLine);
                 }
-                System.out.println("Employee added successfully.");
                 writer.close();
 
         }
-
-        catch(Exception e){
-            System.out.println(e);
+        catch(IOException e){
+            System.out.println(e.getMessage());
         }
-        System.out.println("------------------------------------------");
-        System.out.printf("%-5s %-15s %-10s %-10s\n", "ID", "Name", "Gender","Salary" );
-        System.out.println("------------------------------------------");
-        for (Employee employee : employees.values()) {
-            System.out.printf("%-5d %-15s %-10s %-10.02f\n",
-                    employee.getId(),
-                    employee.getName(),
-                    employee.getGender(),
-                    employee.getSalary()
-            );
-        }
-        System.out.println("------------------------------------------");
+        
     };
     
     public static void searchEmployee() {
