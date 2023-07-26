@@ -105,6 +105,7 @@ class Employee{
     public static void displayAllEmployee() {
 
         File file = new File("C:\\Github Repo\\APL\\APL-S2\\Assignment4\\Employee.txt");
+        
         String line;
          try{
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -116,27 +117,12 @@ class Employee{
          }catch (Exception e){
                 System.out.println(e);
             }
-
-
-        // System.out.println("------------------------------------------");
-        // System.out.printf("%-5s %-15s %-10s %-10s\n", "ID", "Name", "Gender","Salary" );
-        // System.out.println("------------------------------------------");
-        // for (Employee employee : employees.values()) {
-        //     System.out.printf("%-5d %-15s %-10s %-10.02f\n",
-        //             employee.getId(),
-        //             employee.getName(),
-        //             employee.getGender(),
-        //             employee.getSalary()
-        //     );
-        // }
-        // System.out.println("------------------------------------------");
-
-        
         if(file.exists()){
             System.out.println("Employee saved into file location "+file.getPath());
         }else{
             System.out.println("That file does not exist..");
         }
+        
         try{
                 BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                 writer.write("--------------<<Current Employee>>-----------------\n");
@@ -164,16 +150,16 @@ class Employee{
         if (employees.containsKey(id)) {
             Employee employee = employees.get(id);
             System.out.println();
-            System.out.println("------------------------------------------");
-            System.out.printf("%-5s %-15s %-10s %-10s\n", "ID", "Name", "Gender","Salary" );
-            System.out.println("------------------------------------------");
-            System.out.printf("%-5d %-15s %-10s %-10.02f\n",
+            System.out.println("---------------------------------------------------");
+            System.out.printf("|%-5s| %-20s| %-10s| %8s|%n", "ID", "Name", "Gender","Salary" );
+            System.out.println("---------------------------------------------------");
+            System.out.printf("|%-5d| %-20s| %-10s| %8.2f|%n",
                    employee.getId(),
                     employee.getName(),
                     employee.getGender(),
                     employee.getSalary()
             );
-            System.out.println("------------------------------------------");
+            System.out.println("---------------------------------------------------");
             System.out.println();
   
         } else {
