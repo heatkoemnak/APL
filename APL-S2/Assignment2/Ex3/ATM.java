@@ -57,7 +57,6 @@ class Account {
     }
 }
 
-
 public class ATM {
     private static Map<Integer, Account> accounts;
 
