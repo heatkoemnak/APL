@@ -142,7 +142,7 @@ public class Ch4_Ex7 {
             
         } while (!login(account_no, password));
 
-        Account account = accounts.get(account_no);//get key
+        Account account = accounts.get(account_no);
 
         char option;
 
