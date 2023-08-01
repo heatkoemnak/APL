@@ -1,6 +1,6 @@
 
 class Game {
-    private String gameState;
+    // private String gameState;
 
     public void start() {
 
