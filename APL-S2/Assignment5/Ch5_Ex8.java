@@ -1,12 +1,12 @@
 import java.util.HashMap;
 
-class Account{
+class TheAccount{
     private int accID;
     private String name;
     private String email;
     private String password;
 
-    Account(int accID,String name,String email,String password){
+    TheAccount(int accID,String name,String email,String password){
         this.accID = accID;
         this.name = name;
         this.email = email;
@@ -25,6 +25,8 @@ class Account{
     public String getAccPassword(){
         return password;
     }
+
+
     
 
 }
@@ -92,15 +94,19 @@ class Teacher{
 
 
 public class Ch5_Ex8 {
-        public static HashMap<Integer,Account> accounts = new HashMap<>();
+    public static HashMap<Integer,TheAccount> accounts = new HashMap<>();
          public static HashMap<Integer,Info> infos = new HashMap<>();
          public static HashMap<Integer,Teacher> teachers = new HashMap<>();
     public static void main(String[] args) {
 
+        TheAccount account = new TheAccount(1,"John","John@gmail.com","John01");
         Info student = new Info(1,"John1","student",1);
         Teacher teacher = new Teacher(2,"John2","teacher",3,"BIO");
+
         infos.put(student.getStuID(),student);        
         teachers.put(teacher.getTeaID(),teacher);
+        accounts.put(account.getAccID(),account);
+
 
         for(Info info : infos.values()){
             System.out.println(info.getStuID()+" "+info.getStuName()+" "+info.getRole()+" "+info.getStuYear());
@@ -111,6 +117,12 @@ public class Ch5_Ex8 {
             System.out.println(tea.getTeaID()+" "+tea.getTeaName()+" "+tea.getRole()+" "+tea.getTeaYear()+" "+tea.getTeaDep());
 
         }
+
+        for(TheAccount acc : accounts.values()){
+            System.out.println(acc.getAccID()+" "+acc.getAccName()+" "+acc.getAccEmail()+" "+acc.getAccPassword());
+
+        }
+
         
     }
 
