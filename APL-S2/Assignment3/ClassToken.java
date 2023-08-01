@@ -1,7 +1,6 @@
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 class ClassToken{
     private String student_name;
@@ -12,7 +11,6 @@ class ClassToken{
     ClassToken(String student_name, int id, String classTaken, String grade) {
         this.student_name = student_name;
         this.id = id;
-        this.classesTaken = new HashMap<>();
         this.grade = grade;
     }
 
@@ -40,21 +38,7 @@ class ClassToken{
 
     }
 
-    public double calculateGPA() {
-        if (classesTaken.isEmpty()) {
-            return 0.0;
-        }
-
-        double sumGrades = 0;
-        int totalClasses = 0;
-
-        for (int grade : classesTaken.values()) {
-            sumGrades += grade;
-            totalClasses++;
-        }
-
-        return sumGrades / totalClasses;
-    }
+   
 
     private static Map<Integer, ClassToken> studentsMap;
 
