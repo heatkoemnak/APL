@@ -96,9 +96,7 @@ public class Ch5_Ex8 {
          public static HashMap<Integer,Info> infos = new HashMap<>();
          public static HashMap<Integer,Teacher> teachers = new HashMap<>();
     public static void main(String[] args) {
-        
 
-        
         Info student = new Info(1,"John1","student",1);
         Teacher teacher = new Teacher(2,"John2","teacher",3,"BIO");
         infos.put(student.getStuID(),student);        
@@ -113,14 +111,8 @@ public class Ch5_Ex8 {
             System.out.println(tea.getTeaID()+" "+tea.getTeaName()+" "+tea.getRole()+" "+tea.getTeaYear()+" "+tea.getTeaDep());
 
         }
-            
-        
-        
-
-
         
     }
-
 
     
 }
