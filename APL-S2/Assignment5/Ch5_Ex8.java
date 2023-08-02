@@ -1,130 +1,162 @@
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
-class TheAccount{
+class Create_Account{
     private int accID;
-    private String name;
-    private String email;
-    private String password;
+    private String accName;
+    private String accEmail;
+    private String role;
+    private String accPassword;
 
-    TheAccount(int accID,String name,String email,String password){
+    Create_Account(int accID,String accName,String accEmail,String role,String accPassword){
         this.accID = accID;
-        this.name = name;
-        this.email = email;
-        this.password = password;
+        this.accName = accName;
+        this.accEmail = accEmail;
+        this.role=role;
+        this.accPassword = accPassword;
     }
+    
 
     public int getAccID(){
         return accID;
     }
     public String getAccName(){
-        return name;
+        return accName;
     }
     public String getAccEmail(){
-        return email;
+        return accEmail;
+    }
+    public String getRole(){
+        return role;
     }
     public String getAccPassword(){
-        return password;
+        return accPassword;
     }
+    public static HashMap<Integer, Create_Account> accounts= new HashMap<>();
+    public void readTeacher(int TeaAccID,String teaName,String teaEmail,String role,String teaPassword){
+        this.accID=TeaAccID;
+        this.accName=teaName;
+        this.accEmail=teaEmail;
+        this.role=role;
+        this.accPassword=teaPassword;
 
-
+    }
+    public void readStudent(int stuAccID,String stuName,String stuEmail,String role,String stuPassword){
+        this.accID=stuAccID;
+        this.accName=stuName;
+        this.accEmail=stuEmail;
+        this.role=role;
+        this.accPassword=stuPassword;
+    }
     
+    public void Display(){
+        File file = new File("C:\\Github Repo\\APL\\APL-S2\\Assignment5\\Accounts.txt");
+        
+        try{
+            FileWriter writer = new FileWriter(file);
+            writer.write("-----------------------------<<List accounts>>-----------------------------------------------\n");
+                            writer.write("---------------------------------------------------------------------------------------------\n");
+                            String columnTitles = String.format("|%-15s| %-20s| %-25s| %-17s| %-20s%n",  "accID",
+                            "username",
+                            "email",
+                            "role",
+                            "Password");
+                            writer.write(columnTitles);
+                            writer.write("---------------------------------------------------------------------------------------------\n");
 
-}
-class Info{
-    private int stuID;
-    private String stuName;
-    private int stuYear;
-    private String role;
+            for(Create_Account acc:accounts.values()){
+                String formattedLine=String.format("%-15d %-20s  %-27s %-20s %-21s%n",acc.getAccID(),acc.getAccName(),acc.getAccEmail(),acc.getRole(),acc.getAccPassword());
+                writer.write(formattedLine);
+            }
+            writer.close();
+            String line;
+         try{
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+            
+         }catch (Exception e){
+                System.out.println(e);
+            }
 
-    Info(int stuID,String stuName,String role,int stuYear){
-        this.stuID = stuID;
-        this.stuName = stuName;
-        this.role = role;
-        this.stuYear = stuYear;
+    }
+    catch(IOException e){
+        System.out.println(e.getMessage());
+    }
        
-    }
-
-    public int getStuID(){
-        return stuID;
-    }
-    public String getStuName(){
-        return stuName;
-    }
-    public String getRole(){
-        return role;
-    }
-    public int getStuYear(){
-        return stuYear;
-    }
-   
-}
-class Teacher{
-    private int teaID;
-    private String teaName;
-    private int teaYear;
-    private String role;
-    private String teaDep;
-
-    Teacher(int teaID,String teaName,String role,int teaYear,String teaDep){
-        this.teaID = teaID;
-        this.teaName = teaName;
-        this.teaYear = teaYear;
-        this.role = role;
-        this.teaDep = teaDep;
-    }
-
-    public int getTeaID(){
-        return teaID;
-    }
-    public String getTeaName(){
-        return teaName;
-    }
-    public String getRole(){
-        return role;
-    }
-    public int getTeaYear(){
-        return teaYear;
-    }
-    public String getTeaDep(){
-        return teaDep;
-    }
+    } 
 
 }
-
-
 
 public class Ch5_Ex8 {
-    public static HashMap<Integer,TheAccount> accounts = new HashMap<>();
-         public static HashMap<Integer,Info> infos = new HashMap<>();
-         public static HashMap<Integer,Teacher> teachers = new HashMap<>();
+    
+    public static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        TheAccount account = new TheAccount(1,"John","John@gmail.com","John01");
-        Info student = new Info(1,"John1","student",1);
-        Teacher teacher = new Teacher(2,"John2","teacher",3,"BIO");
+        Create_Account teacher = new Create_Account(1,"John","John@gmail.com","teacher","John");
+        Create_Account student = new Create_Account(2,"John1","John1@gmail.com","student","John01");
+        Create_Account.accounts.put(teacher.getAccID(), teacher);
+        Create_Account.accounts.put(student.getAccID(), student);
+        boolean exit = false;
+                while(!exit){
+                    System.out.println("\n------------------------Create Account-------------------------------------");
+                    System.out.println("a.Create Teacher \nb.Create Student\nc. Display Account\nd. exit");
+                    System.out.print("Enter your choice: ");
+                    String choice = sc.nextLine();
+                    switch(choice){
+                        case "a":
+                        Create_Account TeacherAccount = new Create_Account(0,"", "","", "");
+                            System.out.print("accID: ");
+                            int accID = sc.nextInt();
+                            System.out.print("Teacher name: ");
+                            sc.nextLine();
+                            String teaName=sc.nextLine();
+                            System.out.print("Email: ");
+                            String teaEmail = sc.nextLine();
+                            System.out.print("Password: ");
+                            String TeaPassword = sc.nextLine();
+                            String TeaRole="Teacher";
+                            TeacherAccount.readTeacher(accID, teaName, teaEmail,TeaRole,TeaPassword);
+                            Create_Account.accounts.put(accID,TeacherAccount);
 
-        infos.put(student.getStuID(),student);        
-        teachers.put(teacher.getTeaID(),teacher);
-        accounts.put(account.getAccID(),account);
-
-
-        for(Info info : infos.values()){
-            System.out.println(info.getStuID()+" "+info.getStuName()+" "+info.getRole()+" "+info.getStuYear());
-
-        }
-
-        for(Teacher tea : teachers.values()){
-            System.out.println(tea.getTeaID()+" "+tea.getTeaName()+" "+tea.getRole()+" "+tea.getTeaYear()+" "+tea.getTeaDep());
-
-        }
-
-        for(TheAccount acc : accounts.values()){
-            System.out.println(acc.getAccID()+" "+acc.getAccName()+" "+acc.getAccEmail()+" "+acc.getAccPassword());
-
-        }
-
-        
-    }
+                            break;
+                        case "b":
+                            Create_Account studentAccount = new Create_Account(0,"", "","", "");
+                            System.out.print("accID: ");
+                            int stuAccID = sc.nextInt();
+                            System.out.print("Student name: ");
+                            sc.nextLine();
+                            String stuName=sc.nextLine();
+                            System.out.print("Email: ");
+                            String stuEmail = sc.nextLine();
+                            System.out.print("Password: ");
+                            String stuPassword = sc.nextLine();
+                            String stuRole="Student";
+                            studentAccount.readStudent(stuAccID, stuName, stuEmail,stuRole,stuPassword);
+                            Create_Account.accounts.put(stuAccID,studentAccount);
+                            break;
+                        case "c":
+                            Create_Account acc = new Create_Account(0,"", "","", "");
+                            acc.Display();
+                            break;
+                        case "d":
+                            exit = true;
+                            break;
+                        default:
+                            System.out.println("Invalid choice");
+                    }
+                }
+            }
 
     
 }
+
