@@ -21,7 +21,6 @@ class Login{
         this.role=role;
         this.accPassword = accPassword;
     }
-    
 
     public int getAccID(){
         return accID;
@@ -40,15 +39,37 @@ class Login{
     }
     public static HashMap<String, Login> accounts= new HashMap<>();
     public static Scanner sc = new Scanner(System.in);
-    public void readTeacher(int TeaAccID,String teaName,String teaEmail,String role,String teaPassword){
-        this.accID=TeaAccID;
-        this.accName=teaName;
-        this.accEmail=teaEmail;
-        this.role=role;
-        this.accPassword=teaPassword;
-
+    public void readTeacher(){
+                System.out.print("accID: ");
+                accID = sc.nextInt();
+                    System.out.print("Teacher name: ");
+                    sc.nextLine();
+                    String teaName=sc.nextLine();
+                    System.out.print("Email: ");
+                    String teaEmail = sc.nextLine();
+                    System.out.print("Password: ");
+                    String TeaPassword = sc.nextLine();
+                    String TeaRole="teacher";
+                    Login.accounts.put(teaName,new Login(accID, teaName, teaEmail, TeaRole, TeaPassword));
+                    System.out.println("account created successful.");
+            
     }
-   
+    
+    public void readStudent(){
+
+            System.out.print("accID: ");
+            accID = sc.nextInt();
+            System.out.print("Student name: ");
+            sc.nextLine();
+            String stuName=sc.nextLine();
+            System.out.print("Email: ");
+            String stuEmail = sc.nextLine();
+            System.out.print("Password: ");
+            String stuPassword = sc.nextLine();
+            String stuRole="student";
+            Login.accounts.put(stuName,new Login(accID, stuName, stuEmail, stuRole, stuPassword));
+            System.out.println("account created successful.");
+    }
     public boolean verifyLogin(String name,String password){
         
         if(accounts.containsKey(name)){
@@ -69,17 +90,8 @@ class Login{
         }
 
     }
-    public void readStudent(int stuAccID,String stuName,String stuEmail,String role,String stuPassword){
-        this.accID=stuAccID;
-        this.accName=stuName;
-        this.accEmail=stuEmail;
-        this.role=role;
-        this.accPassword=stuPassword;
-    }
-    
     public void Display(){
         File file = new File("C:\\Github Repo\\APL\\APL-S2\\Assignment5\\Accounts.txt");
-        
         try{
             FileWriter writer = new FileWriter(file);
             writer.write("-----------------------------<<List accounts>>-----------------------------------------------\n");
@@ -118,12 +130,11 @@ class Login{
 
 }
 
-class Ex9 {
+class Ch5_Ex9 {
     
     public static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
-
+        
         Login teacher = new Login(1,"Daly","dalychea@gmail.com","teacher","Daly002");
         Login student = new Login(2,"Koemnak","heatkimnak@gmail.com","student","Kim2002kk");
         Login.accounts.put(teacher.getAccName(), teacher);
@@ -137,40 +148,13 @@ class Ex9 {
                     String choice = sc.nextLine();
                     switch(choice){
                         case "a":
-                        Login TeacherAccount = new Login(0,"", "","", "");
-                            System.out.print("accID: ");
-                            int accID = sc.nextInt();
-                            System.out.print("Teacher name: ");
-                            sc.nextLine();
-                            String teaName=sc.nextLine();
-                            System.out.print("Email: ");
-                            String teaEmail = sc.nextLine();
-                            System.out.print("Password: ");
-                            String TeaPassword = sc.nextLine();
-                            String TeaRole="teacher";
-                            TeacherAccount.readTeacher(accID, teaName, teaEmail,TeaRole,TeaPassword);
-                            Login.accounts.put(teaName,TeacherAccount);
-                            System.out.println("account created successful.");
-
+                            account.readTeacher();
                             break;
                         case "b":
-                            Login studentAccount = new Login(0,"", "","", "");
-                            System.out.print("accID: ");
-                            int stuAccID = sc.nextInt();
-                            System.out.print("Student name: ");
-                            sc.nextLine();
-                            String stuName=sc.nextLine();
-                            System.out.print("Email: ");
-                            String stuEmail = sc.nextLine();
-                            System.out.print("Password: ");
-                            String stuPassword = sc.nextLine();
-                            String stuRole="student";
-                            studentAccount.readStudent(stuAccID, stuName, stuEmail,stuRole,stuPassword);
-                            Login.accounts.put(stuName,studentAccount);
-                            System.out.println("account created successful.");
+                            account.readStudent();
                             break;
                         case "c":
-                            System.out.print("Enter name: ");
+                            System.out.print("Enter username: ");
                             String name=sc.nextLine();
                             System.out.print("Enter password: ");
                             String password=sc.nextLine();

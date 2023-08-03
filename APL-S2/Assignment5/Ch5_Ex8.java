@@ -112,7 +112,7 @@ class Create_Account{
 
 }
 
-class Ex9 {
+class Ch5_Ex8{
     
     public static Scanner sc = new Scanner(System.in);
 
