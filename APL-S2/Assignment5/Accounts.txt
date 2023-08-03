@@ -2,5 +2,6 @@
 ---------------------------------------------------------------------------------------------
 |accID          | username            | email                    | role             | Password            
 ---------------------------------------------------------------------------------------------
+3               scs                   sdcs                        teacher              sdc                  
 2               Koemnak               heatkimnak@gmail.com        student              Kim2002kk            
 1               Daly                  dalychea@gmail.com          teacher              Daly002              
