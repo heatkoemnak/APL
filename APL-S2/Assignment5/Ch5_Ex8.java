@@ -38,7 +38,8 @@ class Create_Account{
     public String getAccPassword(){
         return accPassword;
     }
-    public static HashMap<Integer, Create_Account> accounts= new HashMap<>();
+    public static HashMap<String, Create_Account> accounts= new HashMap<>();
+    public static Scanner sc = new Scanner(System.in);
     public void readTeacher(int TeaAccID,String teaName,String teaEmail,String role,String teaPassword){
         this.accID=TeaAccID;
         this.accName=teaName;
@@ -47,6 +48,8 @@ class Create_Account{
         this.accPassword=teaPassword;
 
     }
+   
+    
     public void readStudent(int stuAccID,String stuName,String stuEmail,String role,String stuPassword){
         this.accID=stuAccID;
         this.accName=stuName;
@@ -96,20 +99,21 @@ class Create_Account{
 
 }
 
-public class Ch5_Ex8 {
+class Ex9 {
     
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        Create_Account teacher = new Create_Account(1,"John","John@gmail.com","teacher","John");
-        Create_Account student = new Create_Account(2,"John1","John1@gmail.com","student","John01");
-        Create_Account.accounts.put(teacher.getAccID(), teacher);
-        Create_Account.accounts.put(student.getAccID(), student);
+        Create_Account teacher = new Create_Account(1,"Daly","dalychea@gmail.com","teacher","Daly002");
+        Create_Account student = new Create_Account(2,"Koemnak","heatkimnak@gmail.com","student","Kim2002kk");
+        Create_Account.accounts.put(teacher.getAccName(), teacher);
+        Create_Account.accounts.put(student.getAccName(), student);
+        Create_Account account = new Create_Account(0,"" ,"","","");
         boolean exit = false;
                 while(!exit){
-                    System.out.println("\n------------------------Create Account-------------------------------------");
-                    System.out.println("a.Create Teacher \nb.Create Student\nc. Display Account\nd. login\ne. exit");
+                    System.out.println("\n------------------------Enter Options-------------------------------------");
+                    System.out.println("a.Create Teacher account\nb.Create Student Account\nc. Display Account\nd. exit");
                     System.out.print("Enter your choice: ");
                     String choice = sc.nextLine();
                     switch(choice){
@@ -124,9 +128,10 @@ public class Ch5_Ex8 {
                             String teaEmail = sc.nextLine();
                             System.out.print("Password: ");
                             String TeaPassword = sc.nextLine();
-                            String TeaRole="Teacher";
+                            String TeaRole="teacher";
                             TeacherAccount.readTeacher(accID, teaName, teaEmail,TeaRole,TeaPassword);
-                            Create_Account.accounts.put(accID,TeacherAccount);
+                            Create_Account.accounts.put(teaName,TeacherAccount);
+                            System.out.println("account created successful.");
 
                             break;
                         case "b":
@@ -140,22 +145,20 @@ public class Ch5_Ex8 {
                             String stuEmail = sc.nextLine();
                             System.out.print("Password: ");
                             String stuPassword = sc.nextLine();
-                            String stuRole="Student";
+                            String stuRole="student";
                             studentAccount.readStudent(stuAccID, stuName, stuEmail,stuRole,stuPassword);
-                            Create_Account.accounts.put(stuAccID,studentAccount);
+                            Create_Account.accounts.put(stuName,studentAccount);
+                            System.out.println("account created successful.");
                             break;
                         case "c":
-                            Create_Account acc = new Create_Account(0,"", "","", "");
-                            acc.Display();
+                            account.Display();
                             break;
                         case "d":
-                            
-                            break;
-                            case "e":
                             exit = true;
                             break;
                         default:
                             System.out.println("Invalid choice");
+                       
                     }
                 }
             }

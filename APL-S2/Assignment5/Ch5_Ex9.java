@@ -48,18 +48,14 @@ class Login{
         this.accPassword=teaPassword;
 
     }
-    public void login(String name,String password){
-        this.accName=name;
-        this.accPassword=password;
-
-    }
+   
     public boolean verifyLogin(String name,String password){
         
         if(accounts.containsKey(name)){
             Login account = accounts.get(name);
             if(account.getAccPassword().equals(password)){
-                System.out.println("Login successful");
-                System.out.println("Welcome "+account.getAccName());
+                System.out.println("\nLogin successful");
+                System.out.println("Hi!. ["+account.getRole()+"] :"+account.getAccName());
                 return true;
             }
             else{
@@ -122,27 +118,26 @@ class Login{
 
 }
 
-class Ch5_Ex8 {
+class Ex9 {
     
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        Login teacher = new Login(1,"John","John@gmail.com","teacher","John");
-        Login student = new Login(2,"John1","John1@gmail.com","student","John01");
+        Login teacher = new Login(1,"Daly","dalychea@gmail.com","teacher","Daly002");
+        Login student = new Login(2,"Koemnak","heatkimnak@gmail.com","student","Kim2002kk");
         Login.accounts.put(teacher.getAccName(), teacher);
         Login.accounts.put(student.getAccName(), student);
         Login account = new Login(0,"" ,"","","");
-
-        try(Scanner sc = new Scanner(System.in)){
-                do{
-                    System.out.println("-------------------------------------------------------------");
-                    System.out.println("1. Login\n2. Register\n3. Display Account\n4. exit");
+        boolean exit = false;
+                while(!exit){
+                    System.out.println("\n------------------------Enter Options-------------------------------------");
+                    System.out.println("a.Create Teacher account\nb.Create Student Account\nc. login\nd. Display Account\ne. exit");
                     System.out.print("Enter your choice: ");
-                    int choice = sc.nextInt();
+                    String choice = sc.nextLine();
                     switch(choice){
-                        case 1:
-                            Login TeacherAccount = new Login(0,"", "","", "");
+                        case "a":
+                        Login TeacherAccount = new Login(0,"", "","", "");
                             System.out.print("accID: ");
                             int accID = sc.nextInt();
                             System.out.print("Teacher name: ");
@@ -152,12 +147,13 @@ class Ch5_Ex8 {
                             String teaEmail = sc.nextLine();
                             System.out.print("Password: ");
                             String TeaPassword = sc.nextLine();
-                            String TeaRole="Teacher";
+                            String TeaRole="teacher";
                             TeacherAccount.readTeacher(accID, teaName, teaEmail,TeaRole,TeaPassword);
                             Login.accounts.put(teaName,TeacherAccount);
+                            System.out.println("account created successful.");
 
                             break;
-                        case 2:
+                        case "b":
                             Login studentAccount = new Login(0,"", "","", "");
                             System.out.print("accID: ");
                             int stuAccID = sc.nextInt();
@@ -168,85 +164,31 @@ class Ch5_Ex8 {
                             String stuEmail = sc.nextLine();
                             System.out.print("Password: ");
                             String stuPassword = sc.nextLine();
-                            String stuRole="Student";
+                            String stuRole="student";
                             studentAccount.readStudent(stuAccID, stuName, stuEmail,stuRole,stuPassword);
                             Login.accounts.put(stuName,studentAccount);
+                            System.out.println("account created successful.");
                             break;
-                        case 3:
+                        case "c":
+                            System.out.print("Enter name: ");
+                            String name=sc.nextLine();
+                            System.out.print("Enter password: ");
+                            String password=sc.nextLine();
+                            account.verifyLogin(name, password);
+                            break;
+                        case "d":
                             account.Display();
                             break;
-                        case 4:
-                        System.out.println("hello world");
-                            
-                        case 5:
-                            System.exit(0);
+                        
+                        case "e":
+                            exit = true;
                             break;
                         default:
                             System.out.println("Invalid choice");
-                    }
-                    System.out.println("Do you want to continue? (y/n)");
-                }while(
-                    sc.next().charAt(0) == 'y'
-                );
-                }catch(Exception e){
-                    System.out.println("Invalid input");
-                }
-
-
-
-        // boolean exit = false;
-        //         while(!exit){
-        //             System.out.println("\n------------------------Create Account-------------------------------------");
-        //             System.out.println("1.Create Teacher \n2.Create Student\n3. Display Account\n4. login\n5. exit");
-        //             System.out.print("Enter your choice: ");
-        //             String choice = sc.nextLine();
-        //             switch(choice){
-        //                 case "a":
-        //                 Login TeacherAccount = new Login(0,"", "","", "");
-        //                     System.out.print("accID: ");
-        //                     int accID = sc.nextInt();
-        //                     System.out.print("Teacher name: ");
-        //                     sc.nextLine();
-        //                     String teaName=sc.nextLine();
-        //                     System.out.print("Email: ");
-        //                     String teaEmail = sc.nextLine();
-        //                     System.out.print("Password: ");
-        //                     String TeaPassword = sc.nextLine();
-        //                     String TeaRole="Teacher";
-        //                     TeacherAccount.readTeacher(accID, teaName, teaEmail,TeaRole,TeaPassword);
-        //                     Login.accounts.put(teaName,TeacherAccount);
-
-        //                     break;
-        //                 case "b":
-        //                     Login studentAccount = new Login(0,"", "","", "");
-        //                     System.out.print("accID: ");
-        //                     int stuAccID = sc.nextInt();
-        //                     System.out.print("Student name: ");
-        //                     sc.nextLine();
-        //                     String stuName=sc.nextLine();
-        //                     System.out.print("Email: ");
-        //                     String stuEmail = sc.nextLine();
-        //                     System.out.print("Password: ");
-        //                     String stuPassword = sc.nextLine();
-        //                     String stuRole="Student";
-        //                     studentAccount.readStudent(stuAccID, stuName, stuEmail,stuRole,stuPassword);
-        //                     Login.accounts.put(stuName,studentAccount);
-        //                     break;
-        //                 case "c":
-        //                     account.Display();
-        //                     break;
-        //                 case "d":
-        //                 System.out.println("hello");
-        //                 break;
-        //                 case "e":
-        //                     exit = true;
-        //                     break;
-        //                 default:
-        //                     System.out.println("Invalid choice");
 
                        
-        //             }
-        //         }
+                    }
+                }
             }
 
     

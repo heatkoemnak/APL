@@ -47,7 +47,6 @@ class Login{
     public void login(){
         do{
             if(accounts.isEmpty()){
-                
                 System.out.println("No account found. Please register first.");
                 register();
                 break;
