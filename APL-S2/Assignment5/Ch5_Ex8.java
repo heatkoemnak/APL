@@ -40,22 +40,35 @@ class Create_Account{
     }
     public static HashMap<String, Create_Account> accounts= new HashMap<>();
     public static Scanner sc = new Scanner(System.in);
-    public void readTeacher(int TeaAccID,String teaName,String teaEmail,String role,String teaPassword){
-        this.accID=TeaAccID;
-        this.accName=teaName;
-        this.accEmail=teaEmail;
-        this.role=role;
-        this.accPassword=teaPassword;
+    public void readTeacher(){
+            System.out.print("accID: ");
+            int accID = sc.nextInt();
+            System.out.print("Teacher name: ");
+            sc.nextLine();
+            String teaName=sc.nextLine();
+            System.out.print("Email: ");
+            String teaEmail = sc.nextLine();
+            System.out.print("Password: ");
+            String TeaPassword = sc.nextLine();
+            String TeaRole="teacher";
+            Create_Account.accounts.put(teaName,new Create_Account(accID, teaName, teaEmail, TeaRole, TeaPassword));
+            System.out.println("account created successful.");
 
     }
-   
     
-    public void readStudent(int stuAccID,String stuName,String stuEmail,String role,String stuPassword){
-        this.accID=stuAccID;
-        this.accName=stuName;
-        this.accEmail=stuEmail;
-        this.role=role;
-        this.accPassword=stuPassword;
+    public void readStudent(){
+            System.out.print("accID: ");
+            int stuAccID = sc.nextInt();
+            System.out.print("Student name: ");
+            sc.nextLine();
+            String stuName=sc.nextLine();
+            System.out.print("Email: ");
+            String stuEmail = sc.nextLine();
+            System.out.print("Password: ");
+            String stuPassword = sc.nextLine();
+            String stuRole="student";
+            Create_Account.accounts.put(stuName,new Create_Account(stuAccID, stuName, stuEmail, stuRole, stuPassword));
+            System.out.println("account created successful.");
     }
     
     public void Display(){
@@ -118,37 +131,10 @@ class Ex9 {
                     String choice = sc.nextLine();
                     switch(choice){
                         case "a":
-                        Create_Account TeacherAccount = new Create_Account(0,"", "","", "");
-                            System.out.print("accID: ");
-                            int accID = sc.nextInt();
-                            System.out.print("Teacher name: ");
-                            sc.nextLine();
-                            String teaName=sc.nextLine();
-                            System.out.print("Email: ");
-                            String teaEmail = sc.nextLine();
-                            System.out.print("Password: ");
-                            String TeaPassword = sc.nextLine();
-                            String TeaRole="teacher";
-                            TeacherAccount.readTeacher(accID, teaName, teaEmail,TeaRole,TeaPassword);
-                            Create_Account.accounts.put(teaName,TeacherAccount);
-                            System.out.println("account created successful.");
-
+                            account.readTeacher();
                             break;
                         case "b":
-                            Create_Account studentAccount = new Create_Account(0,"", "","", "");
-                            System.out.print("accID: ");
-                            int stuAccID = sc.nextInt();
-                            System.out.print("Student name: ");
-                            sc.nextLine();
-                            String stuName=sc.nextLine();
-                            System.out.print("Email: ");
-                            String stuEmail = sc.nextLine();
-                            System.out.print("Password: ");
-                            String stuPassword = sc.nextLine();
-                            String stuRole="student";
-                            studentAccount.readStudent(stuAccID, stuName, stuEmail,stuRole,stuPassword);
-                            Create_Account.accounts.put(stuName,studentAccount);
-                            System.out.println("account created successful.");
+                            account.readStudent();
                             break;
                         case "c":
                             account.Display();
