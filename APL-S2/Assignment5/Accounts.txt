@@ -2,5 +2,5 @@
 ---------------------------------------------------------------------------------------------
 |accID          | username            | email                    | role             | Password            
 ---------------------------------------------------------------------------------------------
-1               John                  John@gmail.com              teacher              John                 
 2               John1                 John1@gmail.com             student              John01               
+1               John                  John@gmail.com              teacher              John                 
