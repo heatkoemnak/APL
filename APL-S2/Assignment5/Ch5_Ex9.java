@@ -40,18 +40,43 @@ class Login{
     public static HashMap<String, Login> accounts= new HashMap<>();
     public static Scanner sc = new Scanner(System.in);
     public void readTeacher(){
-                System.out.print("accID: ");
-                accID = sc.nextInt();
-                    System.out.print("Teacher name: ");
-                    sc.nextLine();
-                    String teaName=sc.nextLine();
-                    System.out.print("Email: ");
-                    String teaEmail = sc.nextLine();
-                    System.out.print("Password: ");
-                    String TeaPassword = sc.nextLine();
-                    String TeaRole="teacher";
-                    Login.accounts.put(teaName,new Login(accID, teaName, teaEmail, TeaRole, TeaPassword));
-                    System.out.println("account created successful.");
+                do {
+                    System.out.print("accID: ");
+                    accID = sc.nextInt();
+                    if (accID < 0) {
+                        System.out.println("Invalid accID. Please enter again.");
+                    }else{
+                        System.out.print("Teacher name: ");
+                        sc.nextLine();
+                        String teaName=sc.nextLine();
+                        System.out.print("Email: ");
+                        String teaEmail = sc.nextLine();
+                        System.out.print("Password: ");
+                        String TeaPassword = sc.nextLine();
+                        String TeaRole="teacher";
+                        Login.accounts.put(teaName,new Login(accID, teaName, teaEmail, TeaRole, TeaPassword));
+                        System.out.println("account created successful.");
+                    }
+
+
+                }while(
+                    accID<0
+                );
+
+
+
+                // System.out.print("accID: ");
+                // accID = sc.nextInt();
+                //     System.out.print("Teacher name: ");
+                //     sc.nextLine();
+                //     String teaName=sc.nextLine();
+                //     System.out.print("Email: ");
+                //     String teaEmail = sc.nextLine();
+                //     System.out.print("Password: ");
+                //     String TeaPassword = sc.nextLine();
+                //     String TeaRole="teacher";
+                //     Login.accounts.put(teaName,new Login(accID, teaName, teaEmail, TeaRole, TeaPassword));
+                //     System.out.println("account created successful.");
             
     }
     
